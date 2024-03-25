@@ -7,6 +7,8 @@ namespace Player
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] private float speed;
+        [SerializeField] private float dashDistance;
+        
         void Update()
         {
             Vector2 inputVector = Vector2.zero;
@@ -28,7 +30,17 @@ namespace Player
                 inputVector += Vector2.right;
             }
             
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                transform.Translate(inputVector.normalized * dashDistance);
+            }
+            
             transform.Translate(Time.deltaTime * speed * inputVector.normalized);
+            
+            Vector3 position = transform.position;
+            position = Vector3.Max(position, new Vector3(-9, -5, 0));
+            position = Vector3.Min(position, new Vector3(9, 5, 0));
+            transform.position = position;
         }
     }
 }
