@@ -32,9 +32,12 @@ public class PlayerAttack : MonoBehaviour
             fireTimer -= Time.deltaTime;
         
             if (fireTimer <= 0) {
-                var bullet = Instantiate(bulletPrefab);
-                bullet.transform.position = transform.position;
-                bullet.GetComponent<Bullet>().SetBullet(bulletSpeed, bulletTime);
+                var bullet1 = Instantiate(bulletPrefab);
+                var bullet2 = Instantiate(bulletPrefab);
+                bullet1.transform.position = transform.position - new Vector3(-1, 0, 0);
+                bullet2.transform.position = transform.position - new Vector3(+1, 0, 0);
+                bullet1.GetComponent<Bullet>().SetBullet(bulletSpeed, bulletTime);
+                bullet2.GetComponent<Bullet>().SetBullet(bulletSpeed, bulletTime);
                 fireTimer = fireRate;
             }
         }

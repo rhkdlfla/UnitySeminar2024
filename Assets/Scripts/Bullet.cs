@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     private float speed;
     private float ttl;
     private float time;
-    
+
     public void SetBullet(float bulletSpeed, float bulletTime)
     {
         speed = bulletSpeed;
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+        transform.Translate(Time.deltaTime * speed * new Vector2(0,1));
         //TODO : move bullet forward
     }
 }
